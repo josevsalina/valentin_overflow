@@ -1,6 +1,13 @@
-<mat-toolbar color="primary">
-    <span>Valentin-Overflow</span>
+<mat-toolbar color="primary" style="
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%  !important;
+"
+>
+    <span [routerLink] = "['/']">Valentin-Overflow</span>
     <span class="space"></span>
-    <mat-icon class="icon-user">account_circle</mat-icon>
+    <mat-icon class="icon-user" [routerLink] = "['/signin']">account_circle</mat-icon>
 </mat-toolbar>
-<app-question-detail></app-question-detail>
+<router-outlet></router-outlet>

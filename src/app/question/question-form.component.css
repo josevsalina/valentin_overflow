@@ -1,0 +1,19 @@
+.form-question {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px !important;
+}
+
+.form-question > * {
+  width: 100%;
+}
+
+i{
+  font-size: 48px;
+
+}
+
+small {
+  display: block;
+}
+

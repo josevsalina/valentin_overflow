@@ -35,7 +35,9 @@ h5 small{
   margin-top: 6px;
 }
 
-
+.div-question-detail{
+  margin-top: 60px !important;
+}
 .answer-form{
   position: fixed;
   bottom: 0;
@@ -44,4 +46,5 @@ h5 small{
   z-index: 2;
   background-color: white;
   border-top:1px solid #dcdcdc;
+
 }

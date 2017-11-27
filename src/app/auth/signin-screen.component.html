@@ -1,0 +1,13 @@
+<form class="auth-component" [formGroup] = "signForm" (ngSubmit) = "onSubmit()">
+  <mat-input-container class="description">
+    <input matInput placeholder="Correo Electronico" formControlName="email" id = "email">
+  </mat-input-container>
+  <mat-input-container class="description">
+    <input matInput placeholder="Contraseña" formControlName="password" id = "password" type="password">
+  </mat-input-container>
+  <button type="submit" mat-raised-button color="accent" >Iniciar Sesión</button>
+  <p style="text-align: center">
+    ¿Eres nuevo?  <a mat-button color="primary" [routerLink] = "['/signup']" >Crear Usuario</a>
+  </p>
+
+</form>

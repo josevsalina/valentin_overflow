@@ -1,9 +1,6 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Question} from "./question.model";
-
-const  q = new Question("¿Como reutilizo un componente en android?", "Miren esta es mi pregunta ... " ,new Date(), "help");
-
-
+import {QuestionService} from "./question.service";
 @Component({
   selector:"app-question-list",
   templateUrl:"./question-list.component.html",
@@ -18,14 +15,21 @@ const  q = new Question("¿Como reutilizo un componente en android?", "Miren est
       bottom: 30px;
       font-size: 24px;
     }
-  `]
+  `],
+  providers: [QuestionService]
 })
 
-export class QuestionListComponent{
-  questions: Question[] = new Array(10);
+export class QuestionListComponent implements OnInit{
+  questions: Question[];
+  loading = true;
 
-  constructor(){
-    for(let i =0; i<10; i++)
-      this.questions[i] = q;
+  constructor(private questionService: QuestionService){  }
+
+  ngOnInit(){
+    this.questionService.getQuestions().then((questions: Question[])=>{
+      this.questions=questions;
+      this.loading=false;
+    })
   }
+
 }

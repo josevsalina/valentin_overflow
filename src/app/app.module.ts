@@ -25,6 +25,10 @@ import {QuestionFormComponent} from './question/question-form.component';
 //Routing
 import {Routing} from './app.routing';
 
+
+//Services
+import {AuthService} from './auth/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +49,7 @@ import {Routing} from './app.routing';
     Routing,
     HttpModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

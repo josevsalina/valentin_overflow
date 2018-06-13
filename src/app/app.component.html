@@ -8,6 +8,21 @@
 >
     <span [routerLink] = "['/']">Valentin-Overflow</span>
     <span class="space"></span>
-    <mat-icon class="icon-user" [routerLink] = "['/signin']">account_circle</mat-icon>
+    <button *ngIf="!isLoggedIn()" [routerLink] = "['/signin']" mat-icon-button>
+	    <mat-icon>account_circle</mat-icon>	
+    </button>
+
+	<div *ngIf="isLoggedIn()"> 
+	 <mat-menu #appMenu="matMenu">
+	  <button mat-menu-item disabled>{{fullName()}}</button>
+	  <button mat-menu-item (click)="logout()">Cerrar Sesion</button>
+	</mat-menu>
+
+	<button mat-icon-button [matMenuTriggerFor]="appMenu">
+	  <mat-icon>more_vert</mat-icon>
+	</button>
+	</div>
 </mat-toolbar>
 <router-outlet></router-outlet>
+
+

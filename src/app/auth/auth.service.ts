@@ -4,8 +4,6 @@ import {environment} from "../../environments/environment"
 import {User} from "./user.model";
 import {Http,Headers, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 import {Router} from "@angular/router";
 
 @Injectable()
@@ -46,5 +44,11 @@ export class AuthService {
 	isLoggedIn(){
 		return localStorage.getItem('token') !== null;
 	}
+
+  logout(){
+  	localStorage.clear();
+  	this.currentUser = null;
+  	this.router.navigateByUrl("/");
+  }
 
 }

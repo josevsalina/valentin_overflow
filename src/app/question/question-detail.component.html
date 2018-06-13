@@ -7,7 +7,7 @@
 
       </div>
         <mat-card-title><h2>{{question.title}}</h2></mat-card-title>
-        <mat-card-subtitle><small>Valentin Salina - {{question.createdAt | amLocale:'es' | amTimeAgo}}</small></mat-card-subtitle>
+        <mat-card-subtitle><small> - {{question.createdAt | amLocale:'es' | amTimeAgo}}</small></mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p> {{question.description}}</p>
@@ -18,7 +18,7 @@
       <h3 id="title">Respuestas</h3>
       <ul class="answer-list" *ngIf="question.answers.length > 0">
         <li *ngFor="let answer of question.answers">
-          <h5>{{answer.user.firstName}} {{answer.user.lastName}}
+          <h5>
             <small>{{answer.createdAt | amLocale:'es' | amTimeAgo }}</small>
           </h5>
           <p class="descripcion">{{answer.description}}</p>

@@ -34,7 +34,22 @@ export class AuthService {
 		})
 	}
 
-	login = ({token, userId, firstName, lastName, email}) => {
+	signup(user:User){
+		const body = JSON.stringify(user);
+		const headers = new Headers({'Content-Type':'application/json'})
+		return this.http.post(urljoin(this.userUrl, 'signup'), body, {headers}).map((response: Response) => {
+			const json = response.json();
+			this.login(json);
+			return json;
+		}).catch((err: Response) => {
+			console.error(err);
+			return Observable.throw(err.json);
+
+		})
+	}
+
+	login = ({message, token, userId, firstName, lastName, email}) => {
+		console.log(message);
 		this.currentUser = new User(email, null, firstName, lastName, userId);
 		localStorage.setItem('token', token);
 		localStorage.setItem('user', JSON.stringify({userId, firstName, lastName, email}));

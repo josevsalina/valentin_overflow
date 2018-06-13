@@ -29,29 +29,36 @@ export class QuestionService{
     return this.http.get(url).toPromise().then(response => response.json() as Question).catch(this.handleError);
   }
 
-  addQuestion(question:Question){
-    const body = JSON.stringify(question);
-    const headers = new Headers({'Content-Type':'application/json'});
-    return this.http.post(this.questionsUrl, body, {headers})
-      .map((response:Response) => response.json())
-      .catch((err: Response) => Observable.throw(err.json));
-
+ getToken() {
+    const token = localStorage.getItem('token');
+    return `?token=${token}`;
   }
 
-   addAnswer(answer:Answer){
+  addQuestion(question: Question) {
+    const body = JSON.stringify(question);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const token = this.getToken();
+
+    return this.http.post(this.questionsUrl + token, body, { headers })
+      .map((response: Response) => response.json())
+      .catch((error: Response) => Observable.throw(error.json()));
+  }
+
+  addAnswer(answer: Answer) {
     const a = {
-      description : answer.description,
-      question :{
-        _id : answer.question._id
+      description: answer.description,
+      question: {
+        _id: answer.question._id
       }
     };
     const body = JSON.stringify(a);
-    const headers = new Headers({'Content-Type':'application/json'});
-    const url = urljoin(this.questionsUrl, answer.question._id, 'answer'); 
-    return this.http.post(url, body, {headers})
-      .map((response:Response) => response.json())
-      .catch((err: Response) => Observable.throw(err.json));
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const url = urljoin(this.questionsUrl, answer.question._id, 'answers');
+    const token = this.getToken();
 
+    return this.http.post(url + token, body, { headers })
+      .map((response: Response) => response.json())
+      .catch((error: Response) => Observable.throw(error.json()));
   }
 
   handleError(error: any){
